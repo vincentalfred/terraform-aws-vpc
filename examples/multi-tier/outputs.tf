@@ -108,6 +108,16 @@ output "subnet_data_cidr_blocks" {
   value       = module.staging.subnet_data_cidr_blocks
 }
 
+output "dax_subnet_group_id" {
+  description = "The DAX subnet group ID."
+  value       = module.staging.dax_subnet_group_id
+}
+
+output "dax_subnet_group_name" {
+  description = "The DAX subnet group name."
+  value       = module.staging.dax_subnet_group_name
+}
+
 output "db_subnet_group_name" {
   description = "The db subnet group name."
   value       = module.staging.db_subnet_group_name
