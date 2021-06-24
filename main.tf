@@ -174,6 +174,16 @@ resource "aws_subnet" "data" {
 
 # Provides an RDS DB subnet group resource.
 # Only created when the VPC is multi-tier.
+resource "aws_dax_subnet_group" "this" {
+  count = var.vpc_multi_tier ? "1" : "0"
+
+  name        = "${var.vpc_name}-default-dax-subnet-group"
+  description = "Default DAX Subnet Group on ${var.vpc_name} VPC"
+  subnet_ids  = aws_subnet.data.*.id # For terraform 0.12 this line should be changed to aws_subnet.data[*].id
+}
+
+# Provides an RDS DB subnet group resource.
+# Only created when the VPC is multi-tier.
 resource "aws_db_subnet_group" "this" {
   count = var.vpc_multi_tier ? "1" : "0"
 

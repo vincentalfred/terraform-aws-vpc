@@ -108,6 +108,16 @@ output "subnet_data_cidr_blocks" {
   value       = [aws_subnet.data.*.cidr_block]
 }
 
+output "dax_subnet_group_id" {
+  description = "The DAX subnet group ID."
+  value       = element(concat(aws_dax_subnet_group.this.*.id, [""]), "0")
+}
+
+output "dax_subnet_group_name" {
+  description = "The DAX subnet group name."
+  value       = element(concat(aws_dax_subnet_group.this.*.name, [""]), "0")
+}
+
 output "db_subnet_group_name" {
   description = "The db subnet group name."
   value       = element(concat(aws_db_subnet_group.this.*.id, [""]), "0")
